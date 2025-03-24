@@ -16,6 +16,7 @@ Cada ejercicio se resuelve mediante un **script independiente**, el cual incluye
 ```
 K-Projects/
 │── Practica1_Introducción
+│── Practica2_POO
 └── README.md
 ```
 ## ⚙️ Requisitos  
