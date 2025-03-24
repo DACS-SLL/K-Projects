@@ -40,6 +40,7 @@ class Biblioteca : IBiblioteca {
 
     override fun registrarUsuario(usuario: Usuario) {
         usuarios[usuario] = mutableListOf()
+        println("Usuario: ${usuario.nombre} , registrado con éxito.")
     }
 
     override fun prestamo(usuario: Usuario, material: Material) {
@@ -73,3 +74,24 @@ class Biblioteca : IBiblioteca {
     }
 }
 
+//Pruebas
+fun main() {
+    val biblioteca = Biblioteca()
+
+    val libro1 = Libro("Cien años de soledad", "Gabriel García Márquez", 1967, "Novela", 432)
+    val revista1 = Revista("National Geographic", "Varios", 2021, "1234-5678", 240, 3, "National Geographic Society")
+
+    val usuario1 = Usuario("Daniel", "Casas", 23)
+
+    biblioteca.registrarMaterial(libro1)   //Registro de libro
+    biblioteca.registrarMaterial(revista1) //Registro de revista
+    biblioteca.registrarUsuario(usuario1)  //Resgistro de usuario
+
+    biblioteca.mostrarMaterialesDisponibles() //Libros disponibles
+
+    biblioteca.prestamo(usuario1, libro1)                         // Prestamo
+    biblioteca.mostrarMaterialesReservadosPorUsuario(usuario1)    // Libros reservados
+
+    biblioteca.devolucion(usuario1, libro1)      // Devolucion
+    biblioteca.mostrarMaterialesDisponibles()    // Libros disponibles
+}
