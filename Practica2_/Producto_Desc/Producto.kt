@@ -19,3 +19,16 @@ class Producto {
             println("Error: El precio no puede ser negativo.")
         }
     }
+
+    // Getter y Setter para descuento
+    fun getDescuento(): Double {
+        return descuento
+    }
+
+    fun setDescuento(nuevoDescuento: Double) {
+        if (nuevoDescuento in 0.0..100.0) { // Verificacion para que no salga de 100% de dsc
+            descuento = nuevoDescuento
+        } else {
+            println("Error: El descuento debe estar entre 0 y 100.")
+        }
+    }
