@@ -11,3 +11,20 @@ abstract class Shape {
         println("Perímetro: ${calcularPerimetro()}")
     }
 }
+
+
+class Cuadrado(private val lado: Double) : Shape() {
+    override fun calcularArea(): Double {
+        return lado * lado
+    }
+
+    override fun calcularPerimetro(): Double {
+        return 4 * lado
+    }
+}
+
+fun main() {
+    val cuadrado = Cuadrado(5.0)
+    println("Calculando Cuadrado...")
+    cuadrado.imprimirResultados()
+}
