@@ -27,7 +27,7 @@ Este proyecto es una implementación en Kotlin de una clase abstracta `Shape` y 
 4. Seguir las instrucciones en pantalla para probar las clases.
 
 ## Código Fuente
-El código fuente se encuentra en el archivo `Figuras.kt`.
+El código fuente se encuentra en el archivo `Formas.kt`.
 
 ## Mejoras Implementadas
 - Uso de clases abstractas para definir comportamientos comunes.

@@ -27,7 +27,7 @@ Este proyecto es una implementación en Kotlin de una clase `CuentaBancaria` que
 4. Seguir las instrucciones en pantalla para probar la clase.
 
 ## Código Fuente
-El código fuente se encuentra en el archivo `CuentaBancaria.kt`.
+El código fuente se encuentra en el archivo `CuentaBanc.kt`.
 
 ## Mejoras Implementadas
 - Validación de datos en los métodos `set` para evitar valores incorrectos.
