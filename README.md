@@ -27,17 +27,6 @@
 # La computadora debe elegir de manera aleatoria la opción a elegir. Después debe preguntar al 
 # usuario que opción quiere. Imprimir si ganó, perdió o empató.
 
-# 3. Calculadora Elemental. Realizar una calculadora  básica suma, resta, multiplicación, división. 
-# Debe imprimir un menú con las opciones incluyendo una opción salir. Validar que la opción esté 
-# disponible. Imprimir resultados. Ejemplo de menú:
-
-# ==== Menú ====
-# Suma
-# Resta
-# Multiplicación
-# División
-# Salir
-
 # 4. Adivina Número. Escribe un programa que genere un número aleatorio entre 1 y 30, luego pida al 
 # usuario que adivine el número. Proporciona pistas indicando si el número a adivinar es mayor o 
 # menor que el número ingresado por el usuario. Continúa solicitando intentos hasta que el usuario 
