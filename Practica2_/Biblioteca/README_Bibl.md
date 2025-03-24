@@ -6,7 +6,7 @@ Este proyecto es una implementación en Kotlin de un sistema de gestión de bibl
 - **Daniel Casas** 👤
 
 ## Fecha de Creación
-- **16/03/2025** 📅
+- **23/03/2025** 📅
 
 ## Última Actualización
 - **23/03/2025** 📅
