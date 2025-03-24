@@ -32,3 +32,17 @@ class Producto {
             println("Error: El descuento debe estar entre 0 y 100.")
         }
     }
+
+    // Metodo para calcular el precio final
+    fun calcularPrecioFinal(): Double {
+        return pres * (1 - descuento / 100)
+    }
+}
+
+// Pruebas
+fun main() {
+    val producto = Producto()
+    producto.setPrecio(100.0)
+    producto.setDescuento(20.0)
+    println("Precio final: ${producto.calcularPrecioFinal()}")
+}
