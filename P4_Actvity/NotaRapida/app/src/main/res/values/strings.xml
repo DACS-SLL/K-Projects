@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Nota Rápida</string>
+
+    <string name="hint_nota">Escribe tu nota aquí</string>
+    <string name="btn_compartir">Compartir</string>
+    <string name="error_nota_vacia">La nota no puede estar vacía</string>
+
+    <string name="btn_compartir_correo">Compartir por correo</string>
+    <string name="btn_editar_nuevo">Editar de nuevo</string>
+    <string name="mensaje_compartido">Compartido por correo</string>
+</resources>
