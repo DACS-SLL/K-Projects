@@ -17,7 +17,7 @@ Una aplicación Android desarrollada en Kotlin que permite al usuario completar 
 
 Este proyecto corresponde a una aplicación independiente ubicada en:
 
-📁 [`/ActivityPerfil/app/src/main/java/com/dacs/activityperfil`](./ActivityPerfil/app/src/main/java/com/dacs/activityperfil)
+📁 [`/app/src/main/java/com/dacs/activityperfil`](./ActivityPerfil/app/src/main/java/com/dacs/activityperfil)
 
 ### Archivos principales:
 - `FormActiv.kt`
