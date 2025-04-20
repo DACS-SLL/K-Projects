@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Editor de Perfil</string>
+
+    <!-- Strings para FormActiv -->
+    <string name="hint_nombre">Nombre</string>
+    <string name="hint_edad">Edad</string>
+    <string name="hint_ciudad">Ciudad</string>
+    <string name="hint_correo">Correo electrónico</string>
+    <string name="btn_continuar">Continuar</string>
+
+    <!-- Strings para ResActi -->
+    <string name="btn_confirmar">Confirmar</string>
+    <string name="btn_volver_editar">Volver a editar</string>
+    <string name="perfil_guardado">Perfil guardado correctamente</string>
+
+    <!-- Validación -->
+    <string name="error_campos_obligatorios">Todos los campos son obligatorios</string>
+</resources>
