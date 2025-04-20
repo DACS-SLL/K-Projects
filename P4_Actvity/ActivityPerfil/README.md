@@ -17,12 +17,12 @@ Una aplicación Android desarrollada en Kotlin que permite al usuario completar 
 
 Este proyecto corresponde a una aplicación independiente ubicada en:
 
-📁 [`/PerfilEditor/app/src/main/java/com/example/perfileditor`](./PerfilEditor/app/src/main/java/com/example/perfileditor)
+📁 [`/ActivityPerfil/app/src/main/java/com/dacs/activityperfil`](./ActivityPerfil/app/src/main/java/com/dacs/activityperfil)
 
 ### Archivos principales:
-- `FormularioActivity.kt`
-- `ResumenActivity.kt`
-- `Usuario.kt` (Parcelable)
+- `FormActiv.kt`
+- `ResActi.kt`
+- `User.kt` (Parcelable)
 
 ## 🧪 Dependencias utilizadas
 
