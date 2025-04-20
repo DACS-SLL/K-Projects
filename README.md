@@ -17,6 +17,8 @@ Cada ejercicio se resuelve mediante un **script independiente**, el cual incluye
 K-Projects/
 │── Practica1_Introducción
 │── Practica2_POO
+│── P3_AndroidApps
+│── P4_Activity
 └── README.md
 ```
 ## ⚙️ Requisitos  
