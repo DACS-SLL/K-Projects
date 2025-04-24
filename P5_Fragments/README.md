@@ -22,7 +22,6 @@ Aplicación Android para armar pedidos de comida paso a paso, implementada con F
 - 🎨 Interfaz con Material Design:
   - Temas para modo claro/oscuro
   - Componentes estilizados
-  - Diseño responsive
 
 ## Estructura del Proyecto
 
@@ -30,17 +29,18 @@ Aplicación Android para armar pedidos de comida paso a paso, implementada con F
 app/
 ├── src/main/
 │   ├── java/com/dacs/foodcenter/
-│   │   ├── fragments/
-│   │   │   ├── InicioFragment.kt
-│   │   │   ├── SeleccionComidaFragment.kt
-│   │   │   ├── SeleccionExtrasFragment.kt
-│   │   │   └── ResumenPedidoFragment.kt
-│   │   ├── MainActivity.kt
-│   │   └── FoodCenterApplication.kt
+│   │   ├── FragPrincipal.kt
+│   │   ├── ComidaSelect.kt
+│   │   ├── Extras.kt
+│   │   ├── ResPedido.kt
+│   │   └── MainActivity.kt
 │   ├── res/
 │   │   ├── layout/
-│   │   │   ├── activity_main.xml
-│   │   │   ├── fragment_*.xml
+│   │   │   ├── activ_principal.xml
+│   │   │   ├── extras.xml
+│   │   │   ├── init_frag.xml
+│   │   │   ├── res_pedido.xml
+│   │   │   └── select_food.xml
 │   │   ├── navigation/
 │   │   │   └── nav_graph.xml
 │   │   ├── values/
@@ -55,17 +55,22 @@ app/
 
 ```gradle
 dependencies {
-    implementation 'androidx.core:core-ktx:1.10.1'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.5'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.2'
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
 ```
 
 ### Requisitos del Sistema
 
 - Android 7.0 Nougat (API 24) o superior
-- Android Studio Flamingo (2022.2.1) o posterior
+- Android Studio Meertat o posterior
 - JDK 17
