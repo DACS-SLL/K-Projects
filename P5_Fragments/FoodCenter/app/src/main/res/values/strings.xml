@@ -1,0 +1,30 @@
+<resources>
+    <!-- App Name -->
+    <string name="app_name">Food Center</string>
+
+    <!-- Common -->
+    <string name="siguiente">Siguiente</string>
+
+    <!-- InicioFragment -->
+    <string name="nuevo_pedido">Nuevo Pedido</string>
+
+    <!-- SeleccionComidaFragment -->
+    <string name="selecciona_comida">Selecciona tu comida</string>
+    <string name="pizza">Pizza</string>
+    <string name="hamburguesa">Hamburguesa</string>
+    <string name="ensalada">Ensalada</string>
+
+    <!-- SeleccionExtrasFragment -->
+    <string name="selecciona_extras">Selecciona tus extras</string>
+    <string name="bebida">Bebida</string>
+    <string name="papas">Papas fritas</string>
+    <string name="postre">Postre</string>
+
+    <!-- ResumenPedidoFragment -->
+    <string name="confirmar_pedido">Confirmar Pedido</string>
+    <string name="editar_pedido">Editar Pedido</string>
+
+    <!-- Toast Messages -->
+    <string name="pedido_confirmado">¡Pedido confirmado!</string>
+    <string name="selecciona_comida_toast">Por favor selecciona un tipo de comida</string>
+</resources>

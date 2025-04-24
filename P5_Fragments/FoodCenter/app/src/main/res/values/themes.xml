@@ -1,0 +1,35 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.FoodCenter" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/teal_200</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">?attr/colorPrimaryDark</item>
+        <item name="android:navigationBarColor">?attr/colorPrimary</item>
+
+        <!-- Text colors -->
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:windowBackground">@color/white</item>
+
+        <!-- Component styles -->
+        <item name="materialButtonStyle">@style/Widget.FoodCenter.Button</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.FoodCenter.Body1</item>
+    </style>
+
+    <!-- Botón personalizado -->
+    <style name="Widget.FoodCenter.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="backgroundTint">?attr/colorPrimary</item>
+        <item name="android:padding">12dp</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <!-- TextAppearance para textos -->
+    <style name="TextAppearance.FoodCenter.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+</resources>

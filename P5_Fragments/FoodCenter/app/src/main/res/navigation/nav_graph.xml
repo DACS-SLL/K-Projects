@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/inicioFragment">
+
+    <fragment
+        android:id="@+id/inicioFragment"
+        android:name="com.dacs.foodcenter.FragPrincipal"
+        android:label="Inicio"
+        tools:layout="@layout/init_frag">
+        <action
+            android:id="@+id/action_inicioFragment_to_seleccionComidaFragment"
+            app:destination="@id/seleccionComidaFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/seleccionComidaFragment"
+        android:name="com.dacs.foodcenter.ComidaSelect"
+        android:label="Seleccionar Comida"
+        tools:layout="@layout/select_food">
+        <argument
+            android:name="comida"
+            app:argType="string"
+            android:defaultValue=""/>
+        <action
+            android:id="@+id/action_seleccionComidaFragment_to_seleccionExtrasFragment"
+            app:destination="@id/seleccionExtrasFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/seleccionExtrasFragment"
+        android:name="com.dacs.foodcenter.Extras"
+        android:label="Seleccionar Extras"
+        tools:layout="@layout/extras">
+        <argument
+            android:name="comida"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_seleccionExtrasFragment_to_resumenPedidoFragment"
+            app:destination="@id/resumenPedidoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/resumenPedidoFragment"
+        android:name="com.dacs.foodcenter.ResPedido"
+        android:label="Resumen del Pedido"
+        tools:layout="@layout/res_pedido">
+        <argument
+            android:name="comida"
+            app:argType="string"/>
+        <argument
+            android:name="extras"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_resumenPedidoFragment_to_inicioFragment"
+            app:destination="@id/inicioFragment"
+            app:popUpTo="@id/inicioFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+</navigation>
