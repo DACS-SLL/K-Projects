@@ -17,4 +17,8 @@
     <string name="resultado_ganaste">¡Ganaste!</string>
     <string name="resultado_perdiste">¡Perdiste!</string>
     <string name="volver_al_menu">Volver al menú</string>
+
+    <string name="resultado_placeholder">Resultado</string>
+    <string name="puntaje_label">Puntaje: %1$d</string>
+
 </resources>

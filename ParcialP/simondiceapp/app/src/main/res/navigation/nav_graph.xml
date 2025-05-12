@@ -29,9 +29,16 @@
     <fragment
         android:id="@+id/resultFragment"
         android:name="com.dacs.simondiceapp.ui.result.ResultFragment"
-        android:label="Result" >
-        <action android:id="@+id/action_result_to_welcome" app:destination="@id/welcomeFragment" />
+        android:label="ResultFragment">
+        <argument
+            android:name="score"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_resultFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
     </fragment>
+
 
     <fragment
         android:id="@+id/settingsFragment"
