@@ -2,49 +2,90 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/resultLayout"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:padding="24dp">
 
+    <!-- Mensaje de resultado (Ganaste/Perdiste) -->
     <TextView
-        android:id="@+id/tvResultado"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvResultMessage"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/resultado_placeholder"
+        android:textAlignment="center"
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="@color/black"
+        android:layout_marginBottom="24dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tvPuntaje"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="@string/resultado_ganaste"/>
 
+    <!-- Puntaje actual -->
     <TextView
-        android:id="@+id/tvPuntaje"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvCurrentScore"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/puntaje_label"
+        android:textAlignment="center"
         android:textSize="22sp"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/tvResultado"
-        app:layout_constraintBottom_toTopOf="@id/btnVolverMenu"
+        app:layout_constraintTop_toBottomOf="@id/tvResultMessage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        tools:text="@string/puntaje_label"/>
 
+    <!-- Puntaje más alto -->
+    <TextView
+        android:id="@+id/tvHighScore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tvCurrentScore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="@string/puntaje_alto_label"/>
+
+    <!-- Mensaje especial para nuevo récord -->
+    <TextView
+        android:id="@+id/tvHighScoreMessage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textColor="@color/red"
+        android:layout_marginTop="4dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tvHighScore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="@string/nuevo_record"/>
+
+    <!-- Botón para reiniciar juego -->
     <Button
-        android:id="@+id/btnVolverMenu"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnRestart"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/restart_game"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/tvHighScoreMessage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"/>
+
+    <!-- Botón para volver al menú -->
+    <Button
+        android:id="@+id/btnMenu"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/volver_al_menu"
-        android:backgroundTint="@color/primary"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/tvPuntaje"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/btnRestart"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

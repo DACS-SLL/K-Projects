@@ -1,16 +1,18 @@
 package com.dacs.simondiceapp.ui.game
 
-import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.dacs.simondiceapp.R
 import com.dacs.simondiceapp.databinding.FragmentGameBinding
+import com.dacs.simondiceapp.data.PreferencesManager
 import com.dacs.simondiceapp.util.SoundManager
 
 class GameFragment : Fragment() {
@@ -18,40 +20,95 @@ class GameFragment : Fragment() {
     private var _binding: FragmentGameBinding? = null
     private val binding get() = _binding!!
 
-    private val colors = listOf("ROJO", "AZUL", "VERDE", "AMARILLO")
-    private val colorValues by lazy {
-        mapOf(
-            "ROJO" to ContextCompat.getColor(requireContext(), R.color.red),
-            "AZUL" to ContextCompat.getColor(requireContext(), R.color.blue),
-            "VERDE" to ContextCompat.getColor(requireContext(), R.color.green),
-            "AMARILLO" to ContextCompat.getColor(requireContext(), R.color.yellow)
-        )
-    }
+    // Modelo para colores
+    data class ColorOption(val colorRes: Int, val name: String)
 
-    private var currentColor = ""
+    // Configuración de niveles
+    private val nivel1Colores = listOf(
+        ColorOption(R.color.red, "Rojo"),
+        ColorOption(R.color.green, "Verde"),
+        ColorOption(R.color.blue, "Azul"),
+        ColorOption(R.color.yellow, "Amarillo")
+    )
+
+    private val nivel2Colores = nivel1Colores + listOf(
+        ColorOption(R.color.orange, "Naranja"),
+        ColorOption(R.color.purple, "Morado")
+    )
+
+    private val nivel3Colores = nivel2Colores
+
+    // Estado del juego
+    private lateinit var currentColor: ColorOption
+    private lateinit var colorButtons: Map<String, Button>
     private var score = 0
     private var timeLeft = 30
     private var timer: CountDownTimer? = null
+    private lateinit var preferencesManager: PreferencesManager
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentGameBinding.inflate(inflater, container, false)
+        preferencesManager = PreferencesManager(requireContext())
+        // Cargar sonidos
+        SoundManager.loadSounds(
+            requireContext(),
+            R.raw.correct,
+            R.raw.wrong)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        startGame()
-        setupButtons()
+        super.onViewCreated(view, savedInstanceState)
+        initializeButtons()
+        setupInitialButtons()
+        SoundManager.playMusic(requireContext(), key = "back", musicRes = R.raw.timer_music, loop = false)
+        startNewGame()
     }
 
-    private fun startGame() {
-        score = 0
-        updateScore()
+    private fun setupInitialButtons() {
+        // Todos los botones visibles para el nivel 1 inicialmente
+        val initialColors = getColorsForLevel(1)
+        initialColors.forEach { colorOption ->
+            colorButtons[colorOption.name]?.let { button ->
+                button.setOnClickListener {
+                    validateAnswer(colorOption.name)
+                }
+            }
+        }
+    }
+
+    private fun initializeButtons() {
+        colorButtons = mapOf(
+            "Rojo" to binding.btnRojo,
+            "Azul" to binding.btnAzul,
+            "Verde" to binding.btnVerde,
+            "Amarillo" to binding.btnAmarillo,
+            "Naranja" to binding.btnNaranja,
+            "Morado" to binding.btnMorado
+        )
+    }
+
+    private fun startNewGame() {
+        resetGameState()
+        updateUI()
         startTimer()
-        playMusic()
-        showRandomColor()
+        generateNewColor()
+    }
+
+    private fun resetGameState() {
+        score = 0
+        timeLeft = 30
+        timer?.cancel()
+    }
+
+    private fun updateUI() {
+        binding.tvScore.text = getString(R.string.game_score_label, score)
+        binding.tvTime.text = getString(R.string.game_time_label, timeLeft)
     }
 
     private fun startTimer() {
@@ -62,54 +119,102 @@ class GameFragment : Fragment() {
             }
 
             override fun onFinish() {
-                SoundManager.stopSound()
-                val action = GameFragmentDirections.actionGameToResult(score)
-                findNavController().navigate(action)
+                endGame()
             }
         }.start()
     }
 
-    private fun playMusic() {
-        SoundManager.playSound(requireContext(), R.raw.timer_music)
+    private fun endGame() {
+        SoundManager.release()
+        saveHighScore()
+        navigateToResult()
     }
 
-    private fun setupButtons() {
-        binding.btnRojo.setOnClickListener { checkAnswer("ROJO") }
-        binding.btnAzul.setOnClickListener { checkAnswer("AZUL") }
-        binding.btnVerde.setOnClickListener { checkAnswer("VERDE") }
-        binding.btnAmarillo.setOnClickListener { checkAnswer("AMARILLO") }
+    private fun saveHighScore() {
+        preferencesManager.saveHighScore(score)
     }
 
-    private fun checkAnswer(selected: String) {
-        if (selected == currentColor) {
-            score++
-            updateScore()
-            SoundManager.playSound(requireContext(), R.raw.correct)
-        } else {
-            SoundManager.playSound(requireContext(), R.raw.wrong)
+    private fun navigateToResult() {
+        val action = GameFragmentDirections.actionGameToResult(score)
+        findNavController().navigate(action)
+    }
+
+    private fun setupButtonsForCurrentLevel() {
+        val currentLevel = getCurrentLevel()
+        val availableColors = getColorsForLevel(currentLevel)
+
+        // Listeners para todos los botones primero
+        colorButtons.forEach { (colorName, button) ->
+            button.setOnClickListener {
+                validateAnswer(colorName)
+            }
+
+            // Actualizar visibilidad
+            button.visibility = if (availableColors.any { it.name == colorName }) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
         }
-        showRandomColor()
     }
 
-    private fun updateScore() {
+    private fun getCurrentLevel(): Int = when {
+        score >= 20 -> 3
+        score >= 10 -> 2
+        else -> 1
+    }
+
+    private fun getColorsForLevel(level: Int): List<ColorOption> = when (level) {
+        3 -> nivel3Colores
+        2 -> nivel2Colores
+        else -> nivel1Colores
+    }
+
+    private fun generateNewColor(): ColorOption {
+        val level = getCurrentLevel()
+        val colorOptions = getColorsForLevel(level)
+        currentColor = colorOptions.random()
+        showColorToUser()
+        return currentColor
+    }
+
+    private fun showColorToUser() {
+        binding.viewColor.setBackgroundResource(currentColor.colorRes)
+
+        // Stroop effect para level 3
+        if (getCurrentLevel() == 3) {
+            val textColor = nivel3Colores.random()
+            binding.tvColorNombre.apply {
+                text = currentColor.name
+                setTextColor(ContextCompat.getColor(requireContext(), textColor.colorRes))
+                visibility = View.VISIBLE
+            }
+        } else {
+            binding.tvColorNombre.visibility = View.GONE
+        }
+    }
+
+    private fun validateAnswer(selectedColor: String) {
+        val isCorrect = selectedColor == currentColor.name
+        playSoundEffect(isCorrect)
+        updateScore(isCorrect)
+        generateNewColor()
+    }
+
+    private fun playSoundEffect(isCorrect: Boolean) {
+        if (isCorrect) SoundManager.playMusic(requireContext(), key = "correct", musicRes = R.raw.correct, loop = false)
+        else SoundManager.playMusic(requireContext(), key = "wrong", musicRes = R.raw.wrong, loop = false)
+    }
+
+    private fun updateScore(isCorrect: Boolean) {
+        if (isCorrect) score++
         binding.tvScore.text = getString(R.string.game_score_label, score)
-    }
-
-    private fun showRandomColor() {
-        val random = colors.random()
-        currentColor = random
-        val color = colorValues[random] ?: Color.BLACK
-
-        binding.viewColor.setBackgroundColor(color)
-        binding.viewColor.animate().scaleX(1.1f).scaleY(1.1f).setDuration(150).withEndAction {
-            binding.viewColor.animate().scaleX(1f).scaleY(1f).duration = 150
-        }.start()
+        setupButtonsForCurrentLevel() // Actualizar botones por nivel
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        timer?.cancel()
-        SoundManager.stopSound()
+        SoundManager.release()
         _binding = null
     }
 }

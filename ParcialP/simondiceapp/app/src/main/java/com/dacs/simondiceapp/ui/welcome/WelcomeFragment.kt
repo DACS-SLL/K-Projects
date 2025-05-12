@@ -24,15 +24,16 @@ class WelcomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        SoundManager.playMusic(requireContext(), key = "start", musicRes = R.raw.fondo, loop = true)
         // Acción al presionar "Jugar"
         binding.btnStart.setOnClickListener {
-            SoundManager.playSound(requireContext(), R.raw.start_sound)
+            SoundManager.playMusic(requireContext(), key = "boton", musicRes = R.raw.start_sound, loop = false)
             findNavController().navigate(R.id.action_welcome_to_game)
         }
 
         // Acción al presionar "Instrucciones"
         binding.btnInstructions.setOnClickListener {
-            SoundManager.playSound(requireContext(), R.raw.correct)
+
         }
 
         // Acción al presionar "Configuración"
@@ -43,7 +44,7 @@ class WelcomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        SoundManager.stopSound()
+        SoundManager.release()
         _binding = null
     }
 }

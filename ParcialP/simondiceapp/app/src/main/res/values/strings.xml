@@ -12,6 +12,8 @@
     <string name="color_azul">Azul</string>
     <string name="color_verde">Verde</string>
     <string name="color_amarillo">Amarillo</string>
+    <string name="color_naranja">Naranja</string>
+    <string name="color_morado">Morado</string>
 
     <!-- Resultados y navegación -->
     <string name="resultado_ganaste">¡Ganaste!</string>
@@ -20,5 +22,8 @@
 
     <string name="resultado_placeholder">Resultado</string>
     <string name="puntaje_label">Puntaje: %1$d</string>
+    <string name="puntaje_alto_label">Puntaje más alto: %1$d</string>
+    <string name="nuevo_record">¡Nuevo récord!</string>
+    <string name="restart_game">Reiniciar</string>
 
 </resources>
