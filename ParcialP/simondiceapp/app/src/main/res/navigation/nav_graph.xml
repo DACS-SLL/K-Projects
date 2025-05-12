@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph.xml">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/welcomeFragment">
 
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.dacs.simondiceapp.ui.welcome.WelcomeFragment"
+        android:label="Welcome" >
+        <action android:id="@+id/action_welcome_to_game" app:destination="@id/gameFragment" />
+        <action android:id="@+id/action_welcome_to_settings" app:destination="@id/settingsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.dacs.simondiceapp.ui.game.GameFragment"
+        android:label="Game" >
+        <action android:id="@+id/action_game_to_result" app:destination="@id/resultFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.dacs.simondiceapp.ui.result.ResultFragment"
+        android:label="Result" >
+        <action android:id="@+id/action_result_to_welcome" app:destination="@id/welcomeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.dacs.simondiceapp.ui.settings.SettingsFragment"
+        android:label="Settings"
+    />
 </navigation>
