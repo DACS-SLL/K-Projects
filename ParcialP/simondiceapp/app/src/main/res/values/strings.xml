@@ -4,4 +4,17 @@
     <string name="btn_instructions">Instrucciones</string>
     <string name="btn_settings">Configuración</string>
     <string name="welcome_title">¡Bienvenido a Simon Dice!</string>
+
+    <!-- GameFragment -->
+    <string name="game_time_label">Tiempo: %1$d</string>
+    <string name="game_score_label">Puntos: %1$d</string>
+    <string name="color_rojo">Rojo</string>
+    <string name="color_azul">Azul</string>
+    <string name="color_verde">Verde</string>
+    <string name="color_amarillo">Amarillo</string>
+
+    <!-- Resultados y navegación -->
+    <string name="resultado_ganaste">¡Ganaste!</string>
+    <string name="resultado_perdiste">¡Perdiste!</string>
+    <string name="volver_al_menu">Volver al menú</string>
 </resources>

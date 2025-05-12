@@ -16,7 +16,14 @@
         android:id="@+id/gameFragment"
         android:name="com.dacs.simondiceapp.ui.game.GameFragment"
         android:label="Game" >
-        <action android:id="@+id/action_game_to_result" app:destination="@id/resultFragment" />
+        <!-- Argumento "score" de tipo integer a la acción -->
+        <action
+            android:id="@+id/action_game_to_result"
+            app:destination="@id/resultFragment">
+            <argument
+                android:name="score"
+                app:argType="integer" />
+        </action>
     </fragment>
 
     <fragment
