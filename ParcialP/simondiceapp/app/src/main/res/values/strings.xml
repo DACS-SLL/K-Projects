@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">SimonDiceApp</string>
+    <string name="app_name">Simon Dice</string>
+    <string name="btn_start">Jugar</string>
+    <string name="btn_instructions">Instrucciones</string>
+    <string name="btn_settings">Configuración</string>
+    <string name="welcome_title">¡Bienvenido a Simon Dice!</string>
 </resources>
