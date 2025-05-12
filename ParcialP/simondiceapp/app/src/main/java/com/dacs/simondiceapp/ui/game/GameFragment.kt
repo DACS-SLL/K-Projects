@@ -2,10 +2,8 @@ package com.dacs.simondiceapp.ui.game
 
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import androidx.navigation.NavOptions
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.content.ContextCompat
@@ -26,15 +24,15 @@ class GameFragment : Fragment() {
 
     // Configuración de niveles
     private val nivel1Colores = listOf(
-        ColorOption(R.color.red, "Rojo"),
-        ColorOption(R.color.green, "Verde"),
-        ColorOption(R.color.blue, "Azul"),
-        ColorOption(R.color.yellow, "Amarillo")
+        ColorOption(R.color.game_red, "Rojo"),
+        ColorOption(R.color.game_green, "Verde"),
+        ColorOption(R.color.game_blue, "Azul"),
+        ColorOption(R.color.game_yellow, "Amarillo")
     )
 
     private val nivel2Colores = nivel1Colores + listOf(
-        ColorOption(R.color.orange, "Naranja"),
-        ColorOption(R.color.purple, "Morado")
+        ColorOption(R.color.game_orange, "Naranja"),
+        ColorOption(R.color.game_purple, "Morado")
     )
 
     private val nivel3Colores = nivel2Colores
@@ -46,14 +44,6 @@ class GameFragment : Fragment() {
     private var timeLeft = 30
     private var timer: CountDownTimer? = null
     private lateinit var preferencesManager: PreferencesManager
-
-    //Opciones para animar la navegacion
-    val navOptions = NavOptions.Builder()
-        .setEnterAnim(R.anim.slide_in_right)
-        .setExitAnim(R.anim.slide_out_left)
-        .setPopEnterAnim(R.anim.slide_in_left)
-        .setPopExitAnim(R.anim.slide_out_right)
-        .build()
 
     override fun onCreateView(
 
