@@ -5,6 +5,7 @@ import android.os.CountDownTimer
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import androidx.navigation.NavOptions
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.content.ContextCompat
@@ -46,6 +47,14 @@ class GameFragment : Fragment() {
     private var timer: CountDownTimer? = null
     private lateinit var preferencesManager: PreferencesManager
 
+    //Opciones para animar la navegacion
+    val navOptions = NavOptions.Builder()
+        .setEnterAnim(R.anim.slide_in_right)
+        .setExitAnim(R.anim.slide_out_left)
+        .setPopEnterAnim(R.anim.slide_in_left)
+        .setPopExitAnim(R.anim.slide_out_right)
+        .build()
+
     override fun onCreateView(
 
         inflater: LayoutInflater,
@@ -76,6 +85,7 @@ class GameFragment : Fragment() {
         initialColors.forEach { colorOption ->
             colorButtons[colorOption.name]?.let { button ->
                 button.setOnClickListener {
+                    animarPush(it)
                     validateAnswer(colorOption.name)
                 }
             }
@@ -146,6 +156,7 @@ class GameFragment : Fragment() {
         // Listeners para todos los botones primero
         colorButtons.forEach { (colorName, button) ->
             button.setOnClickListener {
+                animarPush(it)
                 validateAnswer(colorName)
             }
 
@@ -170,6 +181,16 @@ class GameFragment : Fragment() {
         else -> nivel1Colores
     }
 
+    private fun animateBtnColor(nombreColor: String) {
+        val anim = android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.blink)
+        colorButtons[nombreColor]?.startAnimation(anim)
+    }
+
+    private fun animarPush(view: View) {
+        val scaleAnim = android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.scaleup)
+        view.startAnimation(scaleAnim)
+    }
+
     private fun generateNewColor(): ColorOption {
         val level = getCurrentLevel()
         val colorOptions = getColorsForLevel(level)
@@ -192,6 +213,8 @@ class GameFragment : Fragment() {
         } else {
             binding.tvColorNombre.visibility = View.GONE
         }
+        animateBtnColor(currentColor.name)
+
     }
 
     private fun validateAnswer(selectedColor: String) {

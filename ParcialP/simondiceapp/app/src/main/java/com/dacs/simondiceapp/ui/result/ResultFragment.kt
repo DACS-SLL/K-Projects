@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavOptions
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -45,6 +46,13 @@ class ResultFragment : Fragment() {
         setupClickListeners()
     }
 
+    val navOptions = NavOptions.Builder()
+        .setEnterAnim(R.anim.slide_in_right)
+        .setExitAnim(R.anim.slide_out_left)
+        .setPopEnterAnim(R.anim.slide_in_left)
+        .setPopExitAnim(R.anim.slide_out_right)
+        .build()
+
     private fun setupUI(currentScore: Int, highScore: Int) {
         // Mostrar puntajes
         binding.tvCurrentScore.text = getString(R.string.puntaje_label, currentScore)
@@ -77,11 +85,11 @@ class ResultFragment : Fragment() {
     }
 
     private fun navigateToGame() {
-        findNavController().navigate(R.id.action_resultFragment_to_gameFragment)
+        findNavController().navigate(R.id.action_resultFragment_to_gameFragment, null, navOptions)
     }
 
     private fun navigateToWelcome() {
-        findNavController().navigate(R.id.action_resultFragment_to_welcomeFragment)
+        findNavController().navigate(R.id.action_resultFragment_to_welcomeFragment, null, navOptions)
     }
 
     override fun onDestroyView() {

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.dacs.simondiceapp.R
 import com.dacs.simondiceapp.databinding.FragmentWelcomeBinding
@@ -14,6 +15,13 @@ class WelcomeFragment : Fragment() {
 
     private var _binding: FragmentWelcomeBinding? = null
     private val binding get() = _binding!!
+
+    val navOptions = NavOptions.Builder()
+        .setEnterAnim(R.anim.slide_in_right)
+        .setExitAnim(R.anim.slide_out_left)
+        .setPopEnterAnim(R.anim.slide_in_left)
+        .setPopExitAnim(R.anim.slide_out_right)
+        .build()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +36,7 @@ class WelcomeFragment : Fragment() {
         // Acción al presionar "Jugar"
         binding.btnStart.setOnClickListener {
             SoundManager.playMusic(requireContext(), key = "boton", musicRes = R.raw.start_sound, loop = false)
-            findNavController().navigate(R.id.action_welcome_to_game)
+            findNavController().navigate(R.id.action_welcome_to_game, null, navOptions)
         }
 
         // Acción al presionar "Instrucciones"
@@ -38,7 +46,7 @@ class WelcomeFragment : Fragment() {
 
         // Acción al presionar "Configuración"
         binding.btnSettings.setOnClickListener {
-            findNavController().navigate(R.id.action_welcome_to_settings)
+            findNavController().navigate(R.id.action_welcome_to_settings, null, navOptions)
         }
     }
 
