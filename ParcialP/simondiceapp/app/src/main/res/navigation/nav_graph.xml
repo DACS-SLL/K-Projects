@@ -46,6 +46,9 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.dacs.simondiceapp.ui.settings.SettingsFragment"
-        android:label="Settings"
-    />
+        android:label="Settings">
+    <action
+        android:id="@+id/action_settingsFragment_to_welcomeFragment"
+        app:destination="@id/welcomeFragment" />
+    </fragment>
 </navigation>

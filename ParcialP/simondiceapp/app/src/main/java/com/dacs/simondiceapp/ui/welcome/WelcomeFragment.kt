@@ -39,11 +39,6 @@ class WelcomeFragment : Fragment() {
             findNavController().navigate(R.id.action_welcome_to_game, null, navOptions)
         }
 
-        // Acción al presionar "Instrucciones"
-        binding.btnInstructions.setOnClickListener {
-
-        }
-
         // Acción al presionar "Configuración"
         binding.btnSettings.setOnClickListener {
             findNavController().navigate(R.id.action_welcome_to_settings, null, navOptions)

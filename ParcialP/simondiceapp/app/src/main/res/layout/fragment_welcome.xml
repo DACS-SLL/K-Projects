@@ -26,13 +26,6 @@
         android:layout_marginBottom="16dp" />
 
     <Button
-        android:id="@+id/btnInstructions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_instructions"
-        android:layout_marginBottom="16dp" />
-
-    <Button
         android:id="@+id/btnSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

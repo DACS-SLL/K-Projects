@@ -26,4 +26,9 @@
     <string name="nuevo_record">¡Nuevo récord!</string>
     <string name="restart_game">Reiniciar</string>
 
+    <!-- SettingsFragment con sus Strings-->
+    <string name="settings_title">Configuración</string>
+    <string name="sound_label">Activar sonido</string>
+    <string name="back">Volver</string>
+
 </resources>
